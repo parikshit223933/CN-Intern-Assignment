@@ -1,0 +1,28 @@
+.box-2048 {
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
+  height: 400px;
+  background-color: white;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.unit {
+  border: 1px solid black;
+  width: 25%;
+  height: 25%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  p {
+    margin: 0px;
+    font-size: 50px;
+    font-weight: bold;
+  }
+}
