@@ -90,7 +90,19 @@ export class AppComponent {
         }
         return true;
     }
-
+    restartGame=()=>
+    {
+        this.score=0;
+        this.gameOver=false;
+        this.grid=[
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+            [0, 0, 0, 0]];
+        this.arr=[];
+        this.run();
+        this.reflectChanges()
+    }
     rotate = (grid) => {//this is actually flippping the grid along the axis which joins north-west and south east. 
         let newGrid = [
             [0, 0, 0, 0],
