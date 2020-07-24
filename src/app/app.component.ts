@@ -30,12 +30,19 @@ export class AppComponent {
 
 
 
-
+            if(event.keyCode==87)
+            {
+                this.grid = this.rotate(this.grid);
+                this.grid = this.flip(this.grid);
+                this.run();
+                this.grid = this.flip(this.grid);
+                this.grid = this.rotate(this.grid);
+                this.reflectChanges();
+                
+            }
             if (event.keyCode == 83) {
                 this.grid = this.rotate(this.grid);
                 this.run();
-                this.grid = this.rotate(this.grid);
-                this.grid = this.rotate(this.grid);
                 this.grid = this.rotate(this.grid);
                 this.reflectChanges();
             }
@@ -46,7 +53,6 @@ export class AppComponent {
                 this.run();
                 this.grid = this.flip(this.grid);
                 this.reflectChanges();
-
             }
             if (event.keyCode == 68) {
                 this.run();
@@ -57,8 +63,7 @@ export class AppComponent {
         })
         this.reflectChanges();
     }
-
-    rotate = (grid) => {
+    rotate = (grid) => {//this is actually flippping the grid along the axis which joins north-west and south east. 
         let newGrid = [
             [0, 0, 0, 0],
             [0, 0, 0, 0],

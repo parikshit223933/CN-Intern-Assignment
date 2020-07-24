@@ -1,5 +1,5 @@
 <div class="box-2048">
     <div class="unit" *ngFor="let block of arr">
-        <p>{{block.number}}</p>
+        <p *ngIf="block.number!=0">{{block.number}}</p>
     </div>
 </div>
