@@ -1,5 +1,13 @@
-<div class="box-2048">
-    <div class="unit" *ngFor="let block of arr">
-        <p *ngIf="block.number!=0">{{block.number}}</p>
+
+<div class="app-comp d-flex flex-row justify-content-center align-items-center pl-5 pr-5 flex-wrap">
+    <div class="box-2048">
+        <div class="unit" *ngFor="let block of arr">
+            <p *ngIf="block.number!=0">{{block.number}}</p>
+        </div>
+    </div>
+    <div class="ml-5 mr-5 mb-5">
+        <h3>
+            Score: {{score}}
+        </h3>
     </div>
 </div>
