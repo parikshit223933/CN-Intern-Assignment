@@ -1,4 +1,16 @@
-# Game
+# 2048 Game Using Angular
+This is an assignment I made for Coding Ninjas Web Dev. Internship.
+
+## Technology stack
+1. Angular
+2. ZingTouch (for Gesture Control)
+3. Moment.js
+4. Bootstrap
+5. Animate.CSS
+
+## ScreenShots
+<img src="https://github.com/parikshit223933/CN-Intern-Assignment/blob/master/src/screenshots/1.png"/>
+<img src="https://github.com/parikshit223933/CN-Intern-Assignment/blob/master/src/screenshots/2.png" width=500/>
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.3.
 
