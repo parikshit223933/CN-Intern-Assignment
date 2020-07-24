@@ -12,18 +12,31 @@ function log(target, name, descriptor) {
 export class AppComponent {
     //globals
     arr = []//this will be rendered by the html
-    score=0;//combiner is handling this score
+    score = 0;//combiner is handling this score
     grid = [//this is for the program to use
         [0, 0, 0, 0],
         [0, 0, 0, 0],
         [0, 0, 0, 0],
-        [0, 0, 0, 0]]
+        [0, 0, 0, 0]];
+    gameOver = false;
+
     constructor() {
         // console.table(this.grid);
         this.addNumber();
         this.addNumber();
         // console.table(this.grid);
         document.addEventListener('keydown', (event) => {
+            //before performing any action i need to check that game is over or not
+            if (this.gameOver)//this is just to return the subsequest time when the game is over and player is still pressing some keys. as i dont wnat to show the alert again and again.
+            {
+                return;
+            }
+            if (this.isGameOver())//this is to show the alert the first time when the game is over
+            {
+                this.gameOver = true;
+                window.alert('Game Over!');
+                return;
+            }
             //Here i have to declare key bindings.
             //d=68
             //w=87
@@ -37,7 +50,6 @@ export class AppComponent {
                 this.grid = this.flip(this.grid);
                 this.grid = this.rotate(this.grid);
                 this.reflectChanges();
-
             }
             if (event.keyCode == 83) {//moving down
                 this.grid = this.rotate(this.grid);
@@ -56,12 +68,29 @@ export class AppComponent {
             if (event.keyCode == 68) {//moving right
                 this.run();
                 this.reflectChanges();
-
             }
-
         })
         this.reflectChanges();
     }
+
+    isGameOver = () =>//here i have to check if i do not have any adjacent units containing same numbers and the board is full, in that case the game will be over!
+    {
+        for (let i = 0; i < 4; i++) {
+            for (let j = 0; j < 4; j++) {
+                if (this.grid[i][j] == 0) {
+                    return false;
+                }
+                if (j != 3 && this.grid[i][j] == this.grid[i][j + 1]) {
+                    return false;
+                }
+                if (i != 3 && this.grid[i][j] == this.grid[i + 1][j]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     rotate = (grid) => {//this is actually flippping the grid along the axis which joins north-west and south east. 
         let newGrid = [
             [0, 0, 0, 0],
@@ -83,18 +112,21 @@ export class AppComponent {
         }
         return array;
     }
+
     run = () => {// operating on the grid i.e. sliding, combining and then sliding again and finally inserting a number in the array
         for (let i = 0; i < 4; i++) {
             this.grid[i] = this.operate(this.grid[i]);
         }
         this.addNumber();
     }
+
     operate = (row) => { //to operate
         row = this.slide(row);
         row = this.combiner(row);
         row = this.slide(row);
         return row;
     }
+
     reflectChanges = () => {//clearing the current array and pushing the new elements in the array
         this.arr = [];
         for (let row of this.grid) {
@@ -103,6 +135,7 @@ export class AppComponent {
             }
         }
     }
+
     slide = (row) => {//this will always slide the array to the right
         let newRow = row.filter(value => value);
         let missing = 4 - newRow.length;
@@ -112,6 +145,7 @@ export class AppComponent {
         }
         return zeros;
     }
+
     combiner = (row) => {//this will combine two adjacent number, here combination means adding
         for (let i = 3; i >= 0; i--) {
             let a = row[i];
@@ -119,12 +153,13 @@ export class AppComponent {
             if (a == b) {
                 row[i] += row[i - 1];
                 //now the score will the a+b, i.e. the summed up score of the two adjacent numbers.
-                this.score+=row[i]//or we can also write a+b
+                this.score += row[i]//or we can also write a+b
                 row[i - 1] = 0
             }
         }
         return row;
     }
+
     addNumber = () => {//this will insert either 2 or 4 in the array at some random place
         let options = [];//this should check for any available empty space in the grid
         for (let i = 0; i < 4; i++) {
