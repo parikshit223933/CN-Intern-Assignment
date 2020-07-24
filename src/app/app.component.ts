@@ -22,18 +22,74 @@ export class AppComponent {
         this.addNumber();
         // console.table(this.grid);
         document.addEventListener('keydown', (event) => {
-            if (event.key == 'd') {
-                for (let i = 0; i < 4; i++) {
-                    this.grid[i] = this.slide(this.grid[i]);
-                }
+            //Here i have to declare key bindings.
+            //d=68
+            //w=87
+            //a=65
+            //s=83
+
+
+
+
+            if (event.keyCode == 83) {
+                this.grid = this.rotate(this.grid);
+                this.run();
+                this.grid = this.rotate(this.grid);
+                this.grid = this.rotate(this.grid);
+                this.grid = this.rotate(this.grid);
                 this.reflectChanges();
-                this.addNumber();
+            }
+            if (event.keyCode == 65) {
+                this.grid = this.flip(this.grid);
+                /* this.run();
+                this.flip(this.grid); */
+                this.run();
+                this.grid = this.flip(this.grid);
                 this.reflectChanges();
+
+            }
+            if (event.keyCode == 68) {
+                this.run();
+                this.reflectChanges();
+
             }
 
         })
-
         this.reflectChanges();
+    }
+
+    rotate = (grid) => {
+        let newGrid = [
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+            [0, 0, 0, 0]
+        ]
+        for (let i = 0; i < 4; i++) {
+            for (let j = 0; j < 4; j++) {
+                newGrid[i][j] = grid[j][i];
+            }
+        }
+        return newGrid;
+    }
+
+    flip = (array) => {
+        for (let i = 0; i < 4; i++) {
+            array[i].reverse();
+        }
+        return array;
+    }
+    run = () => {
+        for (let i = 0; i < 4; i++) {
+            this.grid[i] = this.operate(this.grid[i]);
+        }
+        this.addNumber();
+    }
+    operate = (row) => {
+        row = this.slide(row);
+        row = this.combiner(row);
+        row = this.slide(row);
+        return row;
     }
     reflectChanges = () => {
         this.arr = [];
@@ -52,9 +108,16 @@ export class AppComponent {
         }
         return zeros;
     }
-    combiner=()=>
-    {
-        
+    combiner = (row) => {
+        for (let i = 3; i >= 0; i--) {
+            let a = row[i];
+            let b = row[i - 1];
+            if (a == b) {
+                row[i] += row[i - 1];
+                row[i - 1] = 0
+            }
+        }
+        return row;
     }
     addNumber = () => {
         let options = [];
