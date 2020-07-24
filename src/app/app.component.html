@@ -10,8 +10,8 @@
                 </button>
 
                 <!-- Modal -->
-                <div class="modal fade" id="scores" tabindex="-1" role="dialog"
-                    aria-labelledby="scoresLabel" aria-hidden="true">
+                <div class="modal fade" id="scores" tabindex="-1" role="dialog" aria-labelledby="scoresLabel"
+                    aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -42,13 +42,59 @@
             </div>
         </div>
         <div class="col-lg-3">
-            <div class="w-100 text-center animate__animated animate__flipInY">
-                <h3>
+            <div class="w-100 text-center">
+                <h3 class=" animate__animated animate__flipInY">
                     Score: {{score}}
                 </h3>
-                <div class="mt-3 mb-3">
+                <div class="mt-3 mb-3  animate__animated animate__flipInY">
                     <button type="button" (click)="restartGame()" class="btn btn-primary">Restart</button>
                 </div>
+                <!-- /////////////////////////////////////////////////////////////////////////////////// -->
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary my-3" data-toggle="modal" data-target="#instructions">
+                    Read Instructions
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="instructions" tabindex="-1" role="dialog"
+                    aria-labelledby="instructionsLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="instructionsLabel">LeaderBoard</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <ul>
+                                    <li>
+                                        Use "W", "A", "S", "D" keys to play the game.
+                                    </li>
+                                    <li>
+                                        You can also use the swipe gesture to play this game. But remember to swipe only
+                                        on the game Board, otherwise your swipe action won't be recorded!
+                                    </li>
+                                    <li>
+                                        On each step, either 2 or 4 will be added to a random cell on the game board,
+                                        you have to get "2048" on the board to win the game.
+                                    </li>
+                                    <li>
+                                        The game Stores Leader Board Data in localstorage.
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /////////////////////////////////////////////////////////////////////////////////// -->
+                <p class="d-none d-lg-block">
+                    Do you like this game? visit my github profile to have a look at more such web development projects 😊.
+                    click <a href="https://github.com/parikshit223933">Here</a> to visit my Github profile.
+                </p>
             </div>
         </div>
     </div>

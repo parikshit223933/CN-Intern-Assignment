@@ -101,7 +101,6 @@ export class AppComponent {
             let activeRegion = ZingTouch.Region(document.getElementsByClassName('container-fluid')[0]);
             activeRegion.bind(containerElement, 'swipe', (event) => {
                 let angle = event.detail.data[0].currentDirection;
-                console.log(angle);
                 ////////////////////////////////////////////////////////////////////////////////////
                 //before performing any action i need to check that game is over or not
                 if (this.gameOver)//this is just to return the subsequest time when the game is over and player is still pressing some keys. as i dont wnat to show the alert again and again.
@@ -153,7 +152,7 @@ export class AppComponent {
                 }
                 ///////////////////////////////////////////////////////////////////////////////////
             });
-        }, 1000)
+        }, 500)
 
         // 
     }
